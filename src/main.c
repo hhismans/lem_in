@@ -110,5 +110,9 @@ int main(void)
 			break;
 	}
 	affichage(list);
+	pop_edge(&(list->next->edge), list->next->next);
+	ft_putendl("");
+	affichage(list);
+
 	return (0);
 }

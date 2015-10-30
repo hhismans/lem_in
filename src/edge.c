@@ -25,24 +25,34 @@ t_edge	*new_edge(t_node *node)
 	return (ret);
 }
 
+/*
+ * utile pour faire un tableau des noeud visite, maintenant->trouver la plus faible valeure
+ */
 t_edge	*pop_edge(t_edge **edge, t_node *node)
 {
 	t_edge *tmp;
+	t_edge *tmpprev;
 
 	if ((*edge)->node->name == node->name)
 	{
 		tmp = *edge;
 		*edge = (*edge)->next;
 		free(tmp);
+		return (*edge);
 	}
-	tmp = *edge;
-	while (*edge)
+	tmp = (*edge)->next;
+	tmpprev= *edge;
+	while (tmp)
 	{
-		if ((*edge)->node->name == node->name)
+		if ((tmp)->node->name == node->name)
 		{
-			
+			tmpprev->next = tmp->next;
+			free(tmp);
 		}
+		tmpprev = tmp;
+		tmp = tmp->next;
 	}
+	return (*edge);
 }
 
 t_edge	*edge_pushfront(t_edge **edge, t_node *node)
