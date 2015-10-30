@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/24 13:13:13 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/26 16:55:52 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/10/29 20:19:00 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ t_node		*new_cell(char *name, int x, int y, t_type type)
 	(node)->y = y;
 	(node)->edge = NULL;
 	(node)->next = NULL;
+	(node)->father = NULL;
+	(node)->cost = -1;
+	(node)->visited = 0;
 	node->type = type;
 	return (node);
 }

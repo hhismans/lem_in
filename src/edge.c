@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/24 13:10:02 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/28 20:45:01 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/10/30 08:53:13 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ t_edge	*new_edge(t_node *node)
 	ret->node = node;
 	ret->next = NULL;
 	return (ret);
+}
+
+t_edge	*pop_edge(t_edge **edge, t_node *node)
+{
+	t_edge *tmp;
+
+	if ((*edge)->node->name == node->name)
+	{
+		tmp = *edge;
+		*edge = (*edge)->next;
+		free(tmp);
+	}
+	tmp = *edge;
+	while (*edge)
+	{
+		if ((*edge)->node->name == node->name)
+		{
+			
+		}
+	}
 }
 
 t_edge	*edge_pushfront(t_edge **edge, t_node *node)

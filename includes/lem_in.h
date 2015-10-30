@@ -6,13 +6,14 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 14:34:07 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/26 13:52:00 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/10/30 07:04:04 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+# define INT_MAX 2147483647
 enum {FALSE, COMMAND, NODE, EDGE, COMMENTARY};
 
 typedef enum e_type
@@ -28,6 +29,9 @@ typedef struct		s_node
 	int				x;
 	int				y;
 	t_type			type;
+	int				cost;
+	int				visited;
+	struct s_node	*father;
 	struct s_edge	*edge;
 	struct s_node	*next;
 }					t_node;
