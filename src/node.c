@@ -25,7 +25,7 @@ t_node		*new_cell(char *name, int x, int y, t_type type)
 	(node)->edge = NULL;
 	(node)->next = NULL;
 	(node)->father = NULL;
-	(node)->cost = -1;
+	(node)->cost = INT_MAX;
 	(node)->visited = 0;
 	node->type = type;
 	return (node);

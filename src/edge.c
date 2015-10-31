@@ -54,7 +54,9 @@ t_edge	*pop_edge(t_edge **edge, t_node *node)
 	}
 	return (*edge);
 }
-
+/*
+** PUSHFRONT : cf : struct t_edge
+*/
 t_edge	*edge_pushfront(t_edge **edge, t_node *node)
 {
 	t_edge *tmp;

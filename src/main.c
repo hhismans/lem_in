@@ -102,17 +102,14 @@ int main(void)
 	while (get_next_line(0, &str))
 	{
 		error = is_correct_syntax(str, &list, &type);
-		ft_putendl(str);
+//		ft_putendl(str);
 		free(str);
 		if (error != COMMAND)
 			type = STANDART;
 		if (error == FALSE)
 			break;
 	}
-	affichage(list);
-	pop_edge(&(list->next->edge), list->next->next);
-	ft_putendl("");
-	affichage(list);
-
+//	affichage(list);
+	djikstra(list);
 	return (0);
 }

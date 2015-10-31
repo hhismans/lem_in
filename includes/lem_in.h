@@ -53,5 +53,6 @@ int			tablen(char **tab);
 int			ft_contain(char *str, char c);
 int			name_exist(t_node *list, char *str);
 t_edge	*pop_edge(t_edge **edge, t_node *node);
+void djikstra(t_node *graph);
 
 #endif

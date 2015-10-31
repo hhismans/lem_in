@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "lem_in.h"
 #include <stdio.h>
+#include <unistd.h>
 
 /*
 ** return the node with node->type == type
@@ -46,12 +47,12 @@ static void maj_dist(t_node *graph)
 	graph->edge = tmp;
 }
 
-static t_node *find_lowercost(t_edge *rest)
+static t_node *find_lowestcost(t_edge *rest)
 {
 	int		lowercost;
 	t_node	*ret;
 	lowercost = rest->node->cost;
-	rest = rest->next;
+	ret = rest->node;
 	while (rest)
 	{
 		if (rest->node->cost < lowercost)
@@ -64,7 +65,7 @@ static t_node *find_lowercost(t_edge *rest)
 	return (ret);
 }
 
-static 	t_edge *pop(t_edge **list, t_node *elem)
+/*static 	t_edge *pop(t_edge **list, t_node *elem)
 {
 	t_edge prev;
 
@@ -76,12 +77,37 @@ static 	t_edge *pop(t_edge **list, t_node *elem)
 		}
 	}
 	return (*list);
+}*/
+
+/*
+** WARNING MALLOC HERE
+*/
+static	t_edge *copylist(t_node *graph)
+{
+	t_edge *ret;
+	t_edge *tmp;
+
+	ret = NULL;
+	if (graph)
+	{
+		ret = new_edge(graph);
+		graph = graph->next;
+		tmp = ret;
+		while (graph)
+		{
+			tmp->next = new_edge(graph);
+			tmp = tmp->next;
+			graph = graph->next;
+		}
+	}
+	else
+	{
+		ft_putendl_fd("Error copylist graph == NULL", 2);
+	}
+	return (ret);
 }
 
-static	t_edge *createHeap(t_node *graph)
-{
-	while
-}
+
 /*
 ** NAME			:	DJIKSTRA
 ** DESCRIPTION	:	Receive FIRST node of the graph, and find the shortest path
@@ -92,20 +118,43 @@ static	t_edge *createHeap(t_node *graph)
 void djikstra(t_node *graph)
 {
 	t_node *end;
-	t_node *lowercost;
-	t_edge *Heap;
+	t_edge *unvisited;
 
-	graph = find_type(graph, START);
+	unvisited = copylist(graph);
 	end = find_type(graph, END);
+	graph = find_type(graph, START);
 
 	graph->cost = 0;
+	unvisited = pop_edge(&unvisited, graph);
 	if (graph && end)
 	{
-		while (graph->name != end->name) // tant que le nom n'est pas end
+		while (graph && graph->name != end->name) //tant que le nom n'est pas end
 		{
 			maj_dist(graph);
-			
-			/*while (graph->edge) // tant qu'il exite des liaisons avec ce node
+			pop_edge(&unvisited, graph);
+			graph = find_lowestcost(unvisited);
+			t_edge *tmp = unvisited;
+			while (tmp)
+			{
+				tmp = tmp->next;
+			}
+		}
+	}
+	else
+	{
+		ft_putendl_fd("Error : end or start not found", 2);
+		printf("end : %p  start %p", end, graph);
+	}
+	ft_putendl_fd("we are out",2 );
+	while (graph->type != START)
+	{
+		printf("path : %s\n", graph->name);
+		graph = graph->father;
+	}
+	printf("\n");
+}
+/*
+			while (graph->edge) // tant qu'il exite des liaisons avec ce node
 			{
 				if (!graph->edge->node->visited
 						&& graph->cost + 1 < graph->edge->node->cost)
@@ -113,11 +162,4 @@ void djikstra(t_node *graph)
 					graph->edge->node->cost = 0;
 				}
 				graph->edge = graph->edge->next;
-			}*/
-		}
-	}
-	else
-	{
-		ft_putendl_fd("Error : end or start not found", 2);
-	}
-}
+				*/
