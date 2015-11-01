@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 14:34:07 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/30 07:04:04 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 06:49:16 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 /*
 ** Warning malloc
 */
-
-t_pathlist *newpathlist(t_path *data)
+t_pathlist	*newpathlist(t_path *data)
 {
 	t_pathlist *tmp;
 
@@ -27,6 +27,7 @@ t_pathlist *newpathlist(t_path *data)
 	tmp->next = NULL;
 	return (tmp);
 }
+
 t_pathlist	*pathlist_pushfront(t_pathlist **pathl, t_path *path)
 {
 	t_pathlist *tmp;
@@ -45,7 +46,7 @@ t_pathlist	*pathlist_pushfront(t_pathlist **pathl, t_path *path)
 	return (tmp);
 }
 
-t_path *newpath(t_node *node)
+t_path		*newpath(t_node *node)
 {
 	t_path *tmp;
 
@@ -56,7 +57,7 @@ t_path *newpath(t_node *node)
 	return (tmp);
 }
 
-t_path	*path_pushfront(t_path **path, t_node *node)
+t_path		*path_pushfront(t_path **path, t_node *node)
 {
 	t_path *tmp;
 
@@ -74,7 +75,7 @@ t_path	*path_pushfront(t_path **path, t_node *node)
 	return (tmp);
 }
 
-t_pathlist *pushbacklpath(t_pathlist **list, t_path *path)
+t_pathlist	*pushbacklpath(t_pathlist **list, t_path *path)
 {
 	t_pathlist *tmp;
 
@@ -86,6 +87,6 @@ t_pathlist *pushbacklpath(t_pathlist **list, t_path *path)
 	}
 	while (tmp->next)
 		tmp = tmp->next;
-	tmp->next = newpathlist(path);;
+	tmp->next = newpathlist(path);
 	return (tmp);
 }

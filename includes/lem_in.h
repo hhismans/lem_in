@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 14:34:07 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/30 07:04:04 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 07:29:50 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ typedef struct		s_edge
 
 t_edge		*new_edge(t_node *node);
 t_edge		*edge_pushfront(t_edge **edge, t_node *node);
-int		add_edge(t_node *node, char *name1, char *name2);
+int			add_edge(t_node *node, char *name1, char *name2);
 t_node		*new_cell(char *name, int x, int y, t_type type);
 t_node		*add_cell(t_node **list, char **str, t_type type);
 void		freetab(char **tab);
-int		tablen(char **tab);
-int		ft_contain(char *str, char c);
-int		name_exist(t_node *list, char *str);
+int			tablen(char **tab);
+int			ft_contain(char *str, char c);
+int			name_exist(t_node *list, char *str);
 t_edge		*pop_edge(t_edge **edge, t_node *node);
 t_path		*djikstra(t_node *graph); // shoud return t_pathlist, test here
 t_pathlist	*newpathlist(t_path *data);
@@ -71,6 +71,11 @@ t_path		*newpath(t_node *node);
 t_path		*path_pushfront(t_path **path, t_node *node);
 t_pathlist	*pushbacklpath(t_pathlist **list, t_path *path);
 void		ants(t_pathlist *lpath, int nbrofants);
-void	debugdisplay(t_path *path);
+void		debugdisplay(t_path *path);
 t_pathlist	*pathlist_pushfront(t_pathlist **pathl, t_path *path);
+t_node		*find_type(t_node *graph, t_type type);
+void		maj_dist(t_node *graph);
+t_node		*find_lowestcost(t_edge *rest);
+void		resetgraph(t_node *list);
+t_edge		*copylist(t_node *graph);
 #endif

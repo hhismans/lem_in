@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 11:42:34 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/29 18:34:15 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 06:53:02 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			is_correct_syntax(const char *str, t_node **list, t_type *type)
 {
 	char **split;
 
-	if (str[0] == '#') //command case
+	if (str[0] == '#')
 	{
 		if (!ft_strcmp(str, "##end"))
 		{
@@ -36,14 +36,13 @@ int			is_correct_syntax(const char *str, t_node **list, t_type *type)
 	}
 	split = ft_strsplit(str, ' ');
 	if (tablen(split) == 3 && !ft_contain(split[0], '-') &&
-			!name_exist(*list, split[0])) // cell case
+			!name_exist(*list, split[0]))
 	{
-		add_cell(list, split, *type); // OK manque verification q'il n'y a aps deux fois le meme nom
-								// OK ajouter un cas d'erreur pour les '-'
+		add_cell(list, split, *type);
 		freetab(split);
 		return (NODE);
 	}
-	else if (tablen(split) == 1) //tube case
+	else if (tablen(split) == 1)
 	{
 		freetab(split);
 		split = ft_strsplit(str,'-');
@@ -96,10 +95,15 @@ int main(void)
 	char *str;
 	t_node *list;
 	int error;
+	int nbrofants;
 	t_type type;
 	t_pathlist *pathlist;
 
 	type = STANDART;
+
+	get_next_line(0, &str);
+	nbrofants = ft_atoi(str);
+	free(str);
 	while (get_next_line(0, &str))
 	{
 		error = is_correct_syntax(str, &list, &type);
@@ -110,14 +114,23 @@ int main(void)
 		if (error == FALSE)
 			break;
 	}
-//affichage(list);
+	if (error == FALSE)
+	{
+		ft_putendl_fd("ERROR", 2);
+		return (0);
+	}
 	t_path *tmp;
+	pathlist = NULL;
 	while ((tmp = djikstra(list)))
 		pathlist = pathlist_pushfront(&pathlist, tmp);
-	ft_putendl("yo bitch");
-	if (pathlist->path)
+	if (pathlist)
 	{
-		ants(pathlist, 100);
+		ants(pathlist, nbrofants);
+	}
+	else
+	{
+		ft_putendl_fd("ERROR", 2);
+		return (0);
 	}
 	return (0);
 }

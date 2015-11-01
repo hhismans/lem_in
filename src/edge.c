@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/24 13:10:02 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/30 08:53:13 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 06:51:09 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_edge	*new_edge(t_node *node)
 }
 
 /*
- * utile pour faire un tableau des noeud visite, maintenant->trouver la plus faible valeure
- */
+** utile pour faire un tableau des noeud visite, maintenant->trouver la plus faible valeure
+*/
 t_edge	*pop_edge(t_edge **edge, t_node *node)
 {
 	t_edge *tmp;
@@ -41,7 +41,7 @@ t_edge	*pop_edge(t_edge **edge, t_node *node)
 		return (*edge);
 	}
 	tmp = (*edge)->next;
-	tmpprev= *edge;
+	tmpprev = *edge;
 	while (tmp)
 	{
 		if ((tmp)->node->name == node->name)
@@ -54,6 +54,7 @@ t_edge	*pop_edge(t_edge **edge, t_node *node)
 	}
 	return (*edge);
 }
+
 /*
 ** PUSHFRONT : cf : struct t_edge
 */
@@ -94,7 +95,6 @@ int		add_edge(t_node *node, char *name1, char *name2)
 	char	*tmpstr;
 	t_node	*tmpnode;
 
-//	if (!edge_exist(node, node))
 	while (node)
 	{
 		if (!ft_strcmp(name1, node->name) || !ft_strcmp(name2, node->name))

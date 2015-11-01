@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/24 13:13:13 by hhismans          #+#    #+#             */
-/*   Updated: 2015/10/29 20:19:00 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 06:51:41 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ t_node		*add_cell(t_node **list, char **str, t_type type)
 	}
 	return (*list);
 }
-
