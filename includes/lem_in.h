@@ -72,4 +72,5 @@ t_path		*path_pushfront(t_path **path, t_node *node);
 t_pathlist	*pushbacklpath(t_pathlist **list, t_path *path);
 void		ants(t_pathlist *lpath, int nbrofants);
 void	debugdisplay(t_path *path);
+t_pathlist	*pathlist_pushfront(t_pathlist **pathl, t_path *path);
 #endif

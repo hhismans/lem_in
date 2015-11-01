@@ -110,12 +110,14 @@ int main(void)
 		if (error == FALSE)
 			break;
 	}
-//	affichage(list);
-	pathlist = newpathlist(djikstra(list));
+//affichage(list);
+	t_path *tmp;
+	while ((tmp = djikstra(list)))
+		pathlist = pathlist_pushfront(&pathlist, tmp);
+	ft_putendl("yo bitch");
 	if (pathlist->path)
 	{
-		ants(pathlist, 10);
-		djikstra(list);
+		ants(pathlist, 100);
 	}
 	return (0);
 }

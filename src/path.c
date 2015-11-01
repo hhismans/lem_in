@@ -27,6 +27,23 @@ t_pathlist *newpathlist(t_path *data)
 	tmp->next = NULL;
 	return (tmp);
 }
+t_pathlist	*pathlist_pushfront(t_pathlist **pathl, t_path *path)
+{
+	t_pathlist *tmp;
+
+	if (*pathl)
+	{
+		tmp = newpathlist(path);
+		tmp->next = *pathl;
+		*pathl = tmp;
+	}
+	else
+	{
+		*pathl = newpathlist(path);
+		tmp = *pathl;
+	}
+	return (tmp);
+}
 
 t_path *newpath(t_node *node)
 {

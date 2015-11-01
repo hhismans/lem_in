@@ -81,6 +81,16 @@ static t_node *find_lowestcost(t_edge *rest)
 	return (*list);
 }*/
 
+static void resetgraph(t_node *list)
+{
+	while (list)
+	{
+		list->father = NULL;
+		list->cost = INT_MAX;
+		list = list->next;
+	}
+}
+
 /*
 ** WARNING MALLOC HERE
 */
@@ -97,8 +107,11 @@ static	t_edge *copylist(t_node *graph)
 		tmp = ret;
 		while (graph)
 		{
-			tmp->next = new_edge(graph);
-			tmp = tmp->next;
+			if (!graph->visited)
+			{
+				tmp->next = new_edge(graph);
+				tmp = tmp->next;
+			}
 			graph = graph->next;
 		}
 	}
@@ -109,6 +122,14 @@ static	t_edge *copylist(t_node *graph)
 	return (ret);
 }
 
+void putsedge(t_edge *list)
+{
+	while (list)
+	{
+//		printf("unvisited = %s\n", list->node->name);
+		list = list->next;
+	}
+}
 
 /*
 ** NAME			:	DJIKSTRA
@@ -123,7 +144,9 @@ t_path *djikstra(t_node *graph)
 	t_edge *unvisited;
 	t_path *ret;
 
+	resetgraph(graph);
 	unvisited = copylist(graph);
+	putsedge(unvisited);
 	end = find_type(graph, END);
 	graph = find_type(graph, START);
 
@@ -135,6 +158,7 @@ t_path *djikstra(t_node *graph)
 		{
 			maj_dist(graph);
 			pop_edge(&unvisited, graph);
+			
 			graph = find_lowestcost(unvisited);
 		}
 	}
@@ -152,9 +176,12 @@ t_path *djikstra(t_node *graph)
 	ret = NULL;
 	while (graph->type != START)
 	{
+		if (graph->type != END)
+			graph->visited = 1;
 		ret = path_pushfront(&ret, graph);
 		graph = graph->father;
 	}
+	debugdisplay(ret);
 	return (ret);
 }
 /*
