@@ -97,12 +97,13 @@ int main(void)
 	t_node *list;
 	int error;
 	t_type type;
+	t_pathlist *pathlist;
 
 	type = STANDART;
 	while (get_next_line(0, &str))
 	{
 		error = is_correct_syntax(str, &list, &type);
-//		ft_putendl(str);
+		ft_putendl(str);
 		free(str);
 		if (error != COMMAND)
 			type = STANDART;
@@ -110,6 +111,11 @@ int main(void)
 			break;
 	}
 //	affichage(list);
-	djikstra(list);
+	pathlist = newpathlist(djikstra(list));
+	if (pathlist->path)
+	{
+		ants(pathlist, 10);
+		djikstra(list);
+	}
 	return (0);
 }
