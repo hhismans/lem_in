@@ -13,9 +13,12 @@
 SRC = src/main.c \
 	  src/node.c \
 	  src/edge.c \
-	  src/tolibft.c
+	  src/tolibft.c \
+	  src/djikstra.c\
+	  src/path.c \
+	  src/ants.c
 FLAG = -Wall -Werror -Wextra
-INCLUDES = -I./includes -I./libft
+INCLUDES = -I./includes -I./libft -I.
 
 all :
 	gcc $(FLAG) $(INCLUDES) $(SRC) libft.a
