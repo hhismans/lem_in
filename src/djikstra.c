@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 17:21:33 by hhismans          #+#    #+#             */
-/*   Updated: 2015/11/01 07:32:09 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 08:38:52 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int				thereisdirectpath(t_node *start)
+int		thereisdirectpath(t_node *start)
 {
 	t_edge *tmp;
 
@@ -37,9 +37,10 @@ int				thereisdirectpath(t_node *start)
 	}
 	return (0);
 }
+
 t_node	*djikstraalgo(t_node *graph, t_node *end, t_edge *unvisited)
 {
-	while (graph && graph->name != end->name) //tant que le nom n'est pas end
+	while (graph && graph->name != end->name)
 	{
 		maj_dist(graph);
 		pop_edge(&unvisited, graph);
@@ -48,14 +49,7 @@ t_node	*djikstraalgo(t_node *graph, t_node *end, t_edge *unvisited)
 	return (graph);
 }
 
-/*
-** NAME			:	DJIKSTRA
-** DESCRIPTION	:	Receive FIRST node of the graph, and find the shortest path
-**					between start and end nodes.
-** INPUT		:	t_node graph representation
-** RETURN VALUE	:	t_edge representation of the path.
-*/
-t_path			*djikstra(t_node *graph)
+t_path	*djikstra(t_node *graph)
 {
 	t_node *end;
 	t_edge *unvisited;
@@ -71,7 +65,7 @@ t_path			*djikstra(t_node *graph)
 	unvisited = pop_edge(&unvisited, graph);
 	if (graph && end && graph != end)
 		graph = djikstraalgo(graph, end, unvisited);
-	if (!graph) // nopath found
+	if (!graph)
 		return (NULL);
 	ret = NULL;
 	while (graph->type != START)

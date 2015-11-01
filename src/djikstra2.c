@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 07:27:01 by hhismans          #+#    #+#             */
-/*   Updated: 2015/11/01 07:29:25 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 08:39:28 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@
 #include <stdio.h>
 #include <unistd.h>
 
-/*
-** return the node with node->type == type
-*/
-t_node	*find_type(t_node *graph, t_type type)
+t_node		*find_type(t_node *graph, t_type type)
 {
 	while (graph && graph->type != type)
 		graph = graph->next;
 	return (graph);
 }
 
-/*
-** set all link node
-*/
 void		maj_dist(t_node *graph)
 {
 	t_edge *tmp;
@@ -46,7 +40,7 @@ void		maj_dist(t_node *graph)
 	graph->edge = tmp;
 }
 
-t_node	*find_lowestcost(t_edge *rest)
+t_node		*find_lowestcost(t_edge *rest)
 {
 	int		lowercost;
 	t_node	*ret;
@@ -77,10 +71,7 @@ void		resetgraph(t_node *list)
 	}
 }
 
-/*
-** WARNING MALLOC HERE
-*/
-t_edge	*copylist(t_node *graph)
+t_edge		*copylist(t_node *graph)
 {
 	t_edge *ret;
 	t_edge *tmp;

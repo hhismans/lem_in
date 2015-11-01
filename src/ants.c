@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 11:42:34 by hhismans          #+#    #+#             */
-/*   Updated: 2015/11/01 08:30:24 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 08:40:11 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ void	insert_ants(t_path *path, int name)
 	free(tmpname);
 }
 
-/*
-** t<path : antsname, s_node,*next
-*/
 int		displaypath(t_path *path)
 {
 	int		stillants;
@@ -74,8 +71,7 @@ int		displaypath(t_path *path)
 			ft_putnbr(path->antsname);
 			ft_putchar('-');
 			ft_putstr(path->node->name);
-	//		if (path->next && path->next->antsname && startline)
-				ft_putstr(" ");
+			ft_putstr(" ");
 			stillants = 1;
 			ret = 1;
 		}
@@ -87,6 +83,7 @@ int		displaypath(t_path *path)
 int		stillants(t_pathlist *lpath)
 {
 	t_path *tmp;
+
 	while (lpath)
 	{
 		tmp = lpath->path;
@@ -103,7 +100,7 @@ int		stillants(t_pathlist *lpath)
 
 void	finishants(t_pathlist *lpath)
 {
-	t_pathlist *tmp;
+	t_pathlist	*tmp;
 	int			startline;
 
 	startline = 1;
@@ -119,38 +116,4 @@ void	finishants(t_pathlist *lpath)
 			startline = 0;
 		}
 	}
-}
-/*
-** NAME			:	ANTS
-** DESCRIPTION	:	receive list of path, and display the
-** 					path of ants on stdout
-** INPUT		: list of path, nmbr of ants
-** RETURN VALUE	: nothing
-*/
-void	ants(t_pathlist *lpath, int nbrofants)
-{
-	int			antsname;
-	t_pathlist	*tmp;
-	int			startline;
-	int			turn;
-
-	antsname = 1;
-	turn = 0;
-	while (antsname <= nbrofants)
-	{
-		tmp = lpath;
-		startline = 1;
-		while (tmp && antsname <= nbrofants)
-		{
-			insert_ants(tmp->path, antsname);
-			displaypath(tmp->path);
-			tmp = tmp->next;
-			antsname++;
-			startline = 0;
-		}
-		ft_putstr("\n");
-		turn++;
-	}
-	finishants(lpath);
-	ft_putendl("");
 }

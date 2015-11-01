@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 14:34:07 by hhismans          #+#    #+#             */
-/*   Updated: 2015/11/01 06:49:16 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 08:42:23 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
-** Warning malloc
-*/
 t_pathlist	*newpathlist(t_path *data)
 {
 	t_pathlist *tmp;

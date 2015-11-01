@@ -6,7 +6,7 @@
 /*   By: hhismans <hhismans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/24 13:10:02 by hhismans          #+#    #+#             */
-/*   Updated: 2015/11/01 06:51:09 by hhismans         ###   ########.fr       */
+/*   Updated: 2015/11/01 08:40:54 by hhismans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ t_edge	*new_edge(t_node *node)
 	return (ret);
 }
 
-/*
-** utile pour faire un tableau des noeud visite, maintenant->trouver la plus faible valeure
-*/
 t_edge	*pop_edge(t_edge **edge, t_node *node)
 {
 	t_edge *tmp;
@@ -55,9 +52,6 @@ t_edge	*pop_edge(t_edge **edge, t_node *node)
 	return (*edge);
 }
 
-/*
-** PUSHFRONT : cf : struct t_edge
-*/
 t_edge	*edge_pushfront(t_edge **edge, t_node *node)
 {
 	t_edge *tmp;
